@@ -1,5 +1,6 @@
 function [frecuencia, freordenada]=cripto_ana_orden(v)
 frecuencia=zeros(2,27);
+freordenada=zeros(2,27);
 alfabeto='abcdefghijklmnfopqrstuvwxyz';
 alfabeto(15)=char(241);
 letranumero(v);
@@ -14,6 +15,5 @@ for i=1:length(v)
     end
 end
 frecuencia(1,:)=frecuencia(1,:)/length(v);
-freordenada=transpose(frecuencia);
-freordenada=transpose(sortrows(freordenada,'descend'));
+freordenada(1,:)=aux;
 end
