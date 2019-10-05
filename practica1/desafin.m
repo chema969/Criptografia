@@ -10,8 +10,8 @@ alfabeto(15)=char(241);
        descifraafin(i)=alfabeto(mod(clave_inversa*(texto_a_numeros(i)-d),27)+1);
     end
     descifraafin=char(descifraafin);
-else
-    descifraafin=zeros(1,1);
+   else
+    descifraafin=0;
   end
 else
     descifraafin=0;
