@@ -1,6 +1,5 @@
 function descifraafin=desafin (clave, d, texto)
-d=round(d);
-clave=round(clave);
+if(mod(d,1)==0 && mod(clave,1)==0)
 alfabeto='abcdefghijklmnfopqrstuvwxyz';
 alfabeto(15)=char(241);
 [aux,clave_inversa]=gcd(clave,27);
@@ -11,8 +10,10 @@ alfabeto(15)=char(241);
        descifraafin(i)=alfabeto(mod(clave_inversa*(texto_a_numeros(i)-d),27)+1);
     end
     descifraafin=char(descifraafin);
-else
-    descifraafin=zeros(1,1);
+   else
+    descifraafin=0;
   end
-
+else
+    descifraafin=0;
+end
 end

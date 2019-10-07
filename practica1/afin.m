@@ -1,6 +1,5 @@
 function cifradoafin=afin (clave, d ,texto)
-d=round(d);
-clave=round(clave);
+if(mod(d,1)==0 && mod(clave,1)==0)
 alfabeto='abcdefghijklmnfopqrstuvwxyz';
 alfabeto(15)=char(241);
 
@@ -13,5 +12,8 @@ alfabeto(15)=char(241);
     cifradoafin=char(cifradoafin);
   else
     cifradoafin=zeros(1,1);
-  end
+   end
+else
+    cifradoafin=0;
+end
 end
