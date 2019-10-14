@@ -3,7 +3,7 @@ function inver=inv_modulo (A, m)
      disp('la matriz no es cuadrada');
      inver=0;
  else
-   if(all(all(mod(A,1))))
+   if(max(mod(A,1)~=0))
        disp('la matriz no es de enteros');
        inver=0;    
    else
@@ -11,7 +11,7 @@ function inver=inv_modulo (A, m)
        determinante=det(A);
        [mcd,invers]=gcd(int32(determinante),m);
        if(mcd~=1||determinante==0)
-          disp('la matriz no es inversible modulo '+m);
+          disp('la matriz no es inversible en este modulo');
           inver=0;
        else
            
