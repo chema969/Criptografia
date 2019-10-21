@@ -17,12 +17,13 @@ cifrado=[];
 indice=1;
 while(indice<length(textarray))
     sum=0;
-    subchar=textarray(indice:indice+tamanyo-1);
+    subchar=textarray(indice:indice+tamanyo);
     for i=1:length(subchar)
         if(subchar(i)==1)
            sum=sum+s(i);
         end
     end
  cifrado=[cifrado sum];
- indice=indice+tamanyo;
+ indice
 end    
+cifrado=textarray;

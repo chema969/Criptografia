@@ -1,5 +1,5 @@
 function valida=mochila (s)
-if(~condiciones(s)
+if(~condiciones(s))
     valida=false;
     return;
 end
