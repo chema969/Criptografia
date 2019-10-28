@@ -40,7 +40,7 @@ while(i<=d)
                    matrizmensClaro(i,:)=mod(matrizmensClaro(i,:)*C,27); 
                    matrizmensCripto(i,:)=mod(matrizmensCripto(i,:)*C,27); 
                  
-                   for k=1:filas+1
+                   for k=1:filas
                       if(k~=i)
                         matrizmensCripto(k,:)=mod(matrizmensCripto(k,:)-matrizmensCripto(i,:)*matrizmensClaro(k,i),27);
                         matrizmensClaro(k,:)=mod(matrizmensClaro(k,:)-matrizmensClaro(i,:)*matrizmensClaro(k,i),27);
@@ -50,7 +50,7 @@ while(i<=d)
         end
         j=j+1;
         
-        if(~hecho)
+        if(~hecho&&j<=filas)
             matrizmensClaro([i j],:)=matrizmensClaro([j i],:);
             matrizmensCripto([i j],:)=matrizmensCripto([j i],:); 
         end
@@ -62,12 +62,13 @@ while(i<=d)
         matrizmensClaro([puntfil1 puntfil2],:)=matrizmensClaro([puntfil2 puntfil1],:);
         matrizmensCripto([puntfil1 puntfil2],:)=matrizmensCripto([puntfil2 puntfil1],:);
         puntfil2=puntfil2+1;
-        if(mod(puntfil2,d)==0)
+        if(puntfil2==d+1)
             puntfil1=puntfil1+1;
             puntfil2=puntfil1+1;
         end
-        if(mod(puntfil1,d)==0)
+        if(puntfil2==d+1)
             disp("error");
+            matrizclave=0;
             return;
         end
       else
