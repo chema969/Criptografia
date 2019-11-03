@@ -10,12 +10,14 @@ while(mu<(s(length(s)-1)*2+1)||mod(mu,1)~=0)
 end
 w=1;
 for aux=2:mu
+    %Se busca un número sin factores comunes y que tenga inverso con mu
     if(gcd(aux,mu)==1&&~factorescomunes(aux,s))
         w=aux;
         break;
     end
 end
-[xd,inv_w]=gcd(w,mu);
+[~,inv_w]=gcd(w,mu);
 cpriv=[mu inv_w];
 cpubl=mod(s*w,mu);
+
 end

@@ -3,7 +3,7 @@ function inver=inv_modulo (A, m)
      disp('la matriz no es cuadrada');
      inver=0;
  else
-   if(max(mod(A,1)~=0))
+   if(not(all(mod(A(:),1) == 0)))
        disp('la matriz no es de enteros');
        inver=0;    
    else
