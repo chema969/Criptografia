@@ -8,16 +8,18 @@ puntero=d;
 filaActual=1;
 mensajeClaro=letranumero(claro);
 mensajeCripto=letranumero(cripto);
-if(length(claro)>length(cripto))
-    dividendo=length(cripto);
+if(length(mensajeClaro)>length(mensajeCripto))
+    dividendo=length(mensajeCripto);
 else 
-    dividendo=length(claro);
+    dividendo=length(mensajeClaro);
 end
-filas=int32(dividendo/d-mod(dividendo,d));
+filas=int32((dividendo/d)-mod(dividendo,d));
 matrizmensClaro=zeros(filas,d);
 matrizmensCripto=zeros(filas,d);
 while(puntero<dividendo)
+    %matrizmensClaro
     matrizmensClaro(filaActual,:)=mensajeClaro(puntero-d+1:puntero);
+    %matrizmensCripto
     matrizmensCripto(filaActual,:)=mensajeCripto(puntero-d+1:puntero);
     puntero=puntero+d;
     filaActual=filaActual+1;

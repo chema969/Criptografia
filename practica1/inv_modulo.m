@@ -19,7 +19,7 @@ function inver=inv_modulo (A, m)
        end
    end
  end
- 
+ inver=double(inver)
  
  
  end

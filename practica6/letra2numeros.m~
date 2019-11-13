@@ -1,0 +1,26 @@
+%laclaveenestapracticaesrsayautentificacion
+function doble = letra2numeros (texto)
+if(~ischar(texto))
+    %Comprobamos los datos
+    disp("Lo introducido no es un texto");
+    return;
+end
+
+alfabeto='abcdefghijklmnfopqrstuvwxyz';
+alfabeto(15)=char(241);
+v='';
+for i=1:length(texto)
+    for j=1:length(alfabeto)
+        if(texto(i)==alfabeto(j))
+            %Vamos transformando cada letra a un numero, si esta letra
+            %tiene dos cifras, la metemos directamente, si no metemos un 0
+            %extra
+            if(mod(j-1,27)~=0)
+                v=strcat(v,,int2str(j-1));                
+            else
+                v=strcat(v,int2str(j-1));
+            end
+        end 
+    end
+doble=v;
+end
