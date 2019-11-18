@@ -4,7 +4,6 @@ if(0>e||mod(e,1)~=0||0>n||mod(n,1)~=0)
     cifrado=0;
     return;
 end
-
 if(not(all(mod(blo(:),1)==0)))
     disp('Algun elemento de blo no e entero');
     cifrado=0;

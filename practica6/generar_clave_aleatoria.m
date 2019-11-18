@@ -4,9 +4,12 @@ ix  = randi([1,length(primos)]);
 iy  = randi([1,length(primos)]);
 p= primos(ix);
 q= primos(iy);
-fi=p*q;
+p=1187
+q=1171
+fi=p*q
+
 e=65537;
-if(fi<65537)
+if(fi<e)
     %Si 65537 NO es suficientemente grande, tenemos que buscar e tal que M.C.D(e,fi_n)==1.
     for i=2:fi
         if(gcd(i,fi)==1)

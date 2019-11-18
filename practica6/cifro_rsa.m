@@ -5,7 +5,7 @@ if(~ischar(texto))
     return;
 end
 
-if(0>e||mod(e,1)~=0||0>n||mod(n,1)~=0)
+if(0>e||mod(e,1)~=0||0>n||mod(n,1)~=0||numel(num2str(n))<=1)
     disp('O e o n no son enteros positivos');
     desci=0;
     return;

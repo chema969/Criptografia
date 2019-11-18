@@ -25,7 +25,7 @@ end
 
 
 n=p*q;
-mensajeN=['n, que formará parte de las claves es: n=',num2str(n)];
+mensajeN=['n, que formara parte de las claves es: n=',num2str(n)];
 disp(mensajeN)
 
 
