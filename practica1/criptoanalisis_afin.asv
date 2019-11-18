@@ -24,16 +24,12 @@ while (i~=0)
         %Desencriptamos el mensaje
         cifrado=desafin(xd(1),xd(2),v);
         if(cifrado~=0)
-            %Si fue posible descifrar, comprobamos si el mensaje tiene
-            %sentido
             disp("clave="+xd(1));
             disp("desplazamiento="+xd(2));
             disp(cifrado);
-            %Preguntamos al usuario si quiere seguir
             i= input('si quieres probar otra clave introduce cualquier numero, en caso contrario introduce 0:');
         end
     end
-    %Parte del programa donde se van modificando los indices de las letras.
     indice_letra_2=indice_letra_2+1;
     if(indice_letra_2==m) 
         indice_letra_2=1;

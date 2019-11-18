@@ -5,8 +5,10 @@ frecuencia_esp=[0.1253,0.0142,0.0468,0.0586,0.1368,0.0069,0.0101,0.0070,0.0625,0
 frecuencia_esp_ordenada=transpose(frecuencia_esp);
 %Ordenamos de más a menos frecuenci
 frecuencia_esp_ordenada=transpose(sortrows(frecuencia_esp_ordenada,'descend'));
+%Creamos en x un vector de 0 a 26 de uno en uno.
 x = 0:1:26;
 
+%Creamos los subplots
 subplot(2,1,1);
 bar(x,frecuencia_esp(1,:),'r');
 title('Frecuencia de las letras en espanyol');
