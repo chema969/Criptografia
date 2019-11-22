@@ -1,4 +1,10 @@
 function descifraafin=desafin (clave, d, texto)
+%DESAFIN
+%Descifra un texto cifrado en afin
+%Parametros:
+%clave: Clave con la que se cifro el texto
+%d: Desplazamiento con el que se cifro el texto
+%texto: Texto a cifrar
 if(~ischar(texto))
     %Si no introducimos un texto
     disp("Lo introducido no es un texto");

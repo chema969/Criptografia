@@ -1,4 +1,9 @@
 function inver=inv_modulo (A, m)
+%INV_MODULO
+%Funcion que consigue la inversa de una matriz cuadrada en modulo m
+%Parametros:
+% A: Matriz cuadrada
+% m: Modulo
  if(length(A)~=length(A(:,1)))
      %Si la matriz no es cuadrada, retorno 0 y un mensaje de error
      disp('la matriz no es cuadrada');

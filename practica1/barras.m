@@ -1,4 +1,9 @@
 function  comparo=barras (v)
+%BARRAS
+%Funcion que realiza una comparacion grafica de la frecuencia de un texto v
+%y la frecuencia de las letras en castellano
+%Parametros:
+%v: Texto del que se sacara la frecuencia
 [f,aux]=cripto_ana_orden(v);
 %Introducimos la frecuencia en español
 frecuencia_esp=[0.1253,0.0142,0.0468,0.0586,0.1368,0.0069,0.0101,0.0070,0.0625,0.0044,0.0001,0.0497,0.0315,0.0671,0.0031,0.0868,0.0251,0.0088,0.0687,0.0798,0.0463,0.0393,0.0090,0.0002,0.0022,0.0090,0.0052;0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];

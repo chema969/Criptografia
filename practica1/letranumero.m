@@ -1,4 +1,8 @@
 function v=letranumero(texto)
+%LETRANUMERO
+%Funcion que pasa un texto de letras a un vector de numeros
+%Parametros:
+%texto: Texto que se va a pasar a numeros
 if(~ischar(texto))
     %Si no es un texto
     disp("No es un texto");

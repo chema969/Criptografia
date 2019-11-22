@@ -1,4 +1,8 @@
 function [frecuencia, freordenada]=cripto_ana_orden(v)
+%CRIPTO_ANA_ORDEN
+%Devuelve tanto la frecuencia de las letras del texto como la del espanyol
+%Parametros:
+%v: Texto
 if(~ischar(v))
     %Si no introducimos un texto
     disp("Lo introducido no es un texto");

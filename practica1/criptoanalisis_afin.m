@@ -1,4 +1,11 @@
 function criptoanalisis_afin (v, m)
+%CRIPTOANALISIS_AFIN
+%Realiza el criptoanalisis del cifrado afin mediante analisis de
+%frecuencias
+%Parametros:
+%v: mensaje cifrado
+%m: Modulo en el que se cifro el mensaje
+
 %Creamos las distintas variables auxiliares e indices
 i=1;
 indice_letra_1=1;

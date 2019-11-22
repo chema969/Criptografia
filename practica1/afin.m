@@ -1,4 +1,11 @@
 function cifradoafin=afin (clave, d ,texto)
+%AFIN
+%Realiza el cifrado afin de un mensaje mediante una clave y un
+%desplazamiento
+%Parametros:
+%clave: Clave del sistema afin
+%d: Desplazamiento del sistema afin
+%texto: Texto a cifrar
 if(~ischar(texto))
     %Si no introducimos un texto en afin
     disp("Lo introducido no es un texto");
