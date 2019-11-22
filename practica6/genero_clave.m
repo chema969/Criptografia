@@ -23,12 +23,12 @@ while(not(isprime(q)))
     q=input('El valor de p no es un numero primo. Introduce un numero primo:'); 
 end 
 
-
+%calculamos n=p*q
 n=p*q;
 mensajeN=['n, que formara parte de las claves es: n=',num2str(n)];
 disp(mensajeN)
 
-
+%Calculamos fi_n
 fi_n = (p-1)*(q-1);
 e=65537;
 if(fi_n>e)
@@ -49,10 +49,11 @@ end
 
 mensajeD=['Buscamos d de forma que d sea el inverso de e=',num2str(e) ,' modulo fi_n=',num2str(fi_n)];
 disp(mensajeD);
-
+%Calculamos el inverso de e mod fi
 [~,d]=gcd(e,fi_n);
-mensajeD=['Seleccionamos d=',num2str(d)];
 d=mod(d,fi_n);
+mensajeD=['Seleccionamos d=',num2str(d)];
+disp(mensajeD)
 disp('La clave privada es ');
 clavePrivada=[n d]
 disp('La clave publica es ');

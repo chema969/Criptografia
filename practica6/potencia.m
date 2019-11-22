@@ -1,4 +1,11 @@
 function pote=potencia (c, d, n)
+%POTENCIA
+%Funcion que calcula c elevado a d modulo n mediante la exponenciancion
+%rapida
+%Parametros:
+%c=Base
+%d=Exponente
+%n=modulo
 if(mod(c,1)~=0||mod(d,1)~=0||mod(n,1)~=0)
     pote=0;
     return;

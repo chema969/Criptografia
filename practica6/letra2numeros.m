@@ -1,10 +1,15 @@
-%laclaveenestapracticaesrsayautentificacion
 function doble = letra2numeros (texto)
+%LETRA2NUMEROS 
+%Funcion que transforma un texto a numeros de dos cifras
+%Parametros:
+%texto=texto a transformar
+
 if(~ischar(texto))
     %Comprobamos los datos
     disp("Lo introducido no es un texto");
     return;
 end
+%Pasamos todo el texto a minusculas para simplificar
 texto=lower(texto);
 alfabeto='abcdefghijklmnfopqrstuvwxyz';
 alfabeto(15)=char(241);
@@ -16,7 +21,7 @@ for i=1:length(texto)
             %tiene dos cifras, la metemos directamente, si no metemos un 0
             %extra
             if((j-1)-10<0)
-                %Si es un número de una sola cifra
+                %Si es un numero de una sola cifra
                 v=strcat(v,'0',int2str(j-1));                
             else
                 %Si este tiene dos cifras
