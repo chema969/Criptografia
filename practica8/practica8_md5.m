@@ -28,7 +28,7 @@ t = fix(abs(sin(1:64)) .* m)
 % B=89 ab cd ef --> ef cd ab 89 
 % C=fe dc ba 98 --> 98 ba dc fe
 % D=76 54 32 10 --> 10 32 54 76
-fhash=zeros(4,1);
+fhash=zeros(1,4);
 aux=[6,7,4,5,2,3,0,1];
 aux2='';
 for i=1:length(aux)
@@ -57,7 +57,6 @@ for i=1:length(aux)
 end
 fhash(4)=bin2dec(aux2);
 
-fhash
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% PASO 2.- PREPARAMOS EL MENSAJE PARA APLICARLE LA HASH
@@ -133,14 +132,14 @@ for k = 1:16:numel(mensaje)
     a = fhash(1); b = fhash(2); c = fhash(3); d = fhash(4);
     for i =1:64
         % Convertimos b, c y d a vectores fila  de bits.
-        bv = dec2bin(b, 32) - '0'
-        cv = dec2bin(c, 32) - '0'
-        dv = dec2bin(d, 32) - '0'
+        bv = dec2bin(b, 32) - '0';
+        cv = dec2bin(c, 32) - '0';
+        dv = dec2bin(d, 32) - '0';
         % obtenemos  f  = mix de b, c, d.
         %      ki = indice  0:15, del mensaje (k + ki).
         %      sr = filas 1:4, de  s(sr, :).
         if i <= 16          % ronda 1
-            f = (bv & cv) | (~bv & dv)
+            f = (bv & cv) | (~bv & dv);
             ki = i - 1;
             sr = 1;
         elseif i <= 32      % ronda 2
@@ -156,12 +155,13 @@ for k = 1:16:numel(mensaje)
             ki = mod(7 * i - 7, 16);    %de 7 en 7 empezando en 0
             sr = 4;
         end
-        % Convertimos f, DE VECTOR FILA DE BITS A ENTEROS DE 32-bit .
-       
-       f=bin2dec(f);
-       
-       
-       
+        % Convertimos f, DE VECTOR FILA DE BITS A ENTEROS DE 32-bit 
+        auxiliar='';
+        for r=1:length(f)
+            auxiliar=[auxiliar num2str(f(r))];
+        end
+        f=bin2dec(auxiliar);
+
         % HACEMOS LA ROTACIONES
         sc = mod(i - 1, 4) + 1;
         sum = mod(a + f + mensaje(k + ki) + t(i), m);
@@ -169,33 +169,31 @@ for k = 1:16:numel(mensaje)
         sum = circshift(sum, [0, s(sr, sc)]);
         sum = bin2dec(sum);
         % ACTUALIZAMOS  a, b, c, d.
-        if(mod(i,4)==0)
-            
-        elseif(mod(i,4)==1)
-        
-        elseif(mod(i,4)==1)       
-        
-        else      
-            
-        end
+        aux=a;
+        a=d;
+        d=c; 
+        c=b;
+        b=aux;
         
     end
-    
+    a 
+    b
+    c
+    d
     % MODIFICAMOS EL HASH.
-    a=a+fhash(1);
-    b=b+fhash(2);
-    c=c+fhash(3);
-    d=d+fhash(4);
+    fhash(1)=mod(a+fhash(1),m)
+    fhash(2)=mod(b+fhash(2),m)
+    fhash(3)=mod(c+fhash(3),m)
+    fhash(4)=mod(d+fhash(4),m)
        
 end
 
 % CONVERTIMOS HASH DE ENTEROS DE 32 BITS  , LITTLE ENDIAN, A BYTES .
-
-
-
+fhash=swapbytes(fhash)
 
 % CONVERTIMOS HASH A HEXADECIMAL.
-
+dec2hex(fhash)
+display(fhash)
 
 
 
