@@ -68,20 +68,18 @@ bytelen = numel(mensaje) %numero de elementos del vector
 % NUMERO DE BITS SEA CONGRUENTE CON 448 MODULO 512. COMO TENEMOS BYTES, COMPLETAMOS 
 % CON 128 (10000000) Y LOS CEROS NECESARIOS PARA QUE EL NUMERO DE BYTES SEA 
 % CONGRUENTE CON 56 MODULO 64
-if(mod(numel(mensaje),64)==56)
-    mensaje=[0 mensaje];
+mensaje=[mensaje 128];
+
+while(mod(numel(mensaje),64)~=56)
+    mensaje=[mensaje 0];
 end
 
-while(mod(numel(mensaje),64)~=55)
-    mensaje=[0 mensaje];
-end
-mensaje=[128 mensaje];
 
 
 
 % PASO 2.2.- COMO CADA PALABRA VIENE FORMADA POR 4 BYTES, HACEMOS UNA MATRIZ DE 
 % 4 FILAS CON LOS BYTES DEL MENSAJE, ASI CADA COLUMNA SERA UNA PALABRA 
-segundolen = numel(mensaje);
+segundolen = numel(mensaje)
 matrizaux=zeros(4,segundolen/4);
 i=1;
 j=1;
@@ -90,37 +88,22 @@ while(i<segundolen)
     i=i+4;
     j=j+1;
 end
-
+matrizaux
 
 
 % PASO 2.3.- CONVERTIMOS CADA COLUMNA A ENTEROS DE 32 BITS, little endian.
 
 vectorfinal=[];
 for i=1:length(matrizaux(1,:))
-    aux='';
-    for j=4:-1:1
-       aux=[aux dec2bin(matrizaux(j,i),8)]; 
-    end
-    vectorfinal=[vectorfinal bin2dec(aux)];
+    auxili=matrizaux(1,i)+matrizaux(2,i)*256+matrizaux(3,i)*65536+matrizaux(4,i)*16777216;
+    vectorfinal=[vectorfinal auxili];
 end
 
 
 % PASO 2.4.- COMPLETAMOS CON LA LONGITUD DEL MENSAJE ORIGINAL COMO UN ENTERO 
 % DE 64 BITS -->8 bytes -->dos palabras : little endian.
-bitlen=dec2bin(bytelen,64);
-aux=[];
-
-for i=32:-8:7
-    aux=[aux bitlen(i-7:i)];
-end
-vectorfinal=[vectorfinal bin2dec(aux)];
-aux=[];
-for i=64:-8:33
-    aux=[aux bitlen(i-7:i)];
-end
-vectorfinal=[vectorfinal bin2dec(aux)];
-mensaje=vectorfinal
-
+mensaje = [vectorfinal, mod(bytelen*8, m), mod((bytelen*8) / m, m)];
+mensaje
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% PASO 3.- REALIZAMOS LA FUNCION HASH
@@ -161,7 +144,7 @@ for k = 1:16:numel(mensaje)
             auxiliar=[auxiliar num2str(f(r))];
         end
         f=bin2dec(auxiliar);
-
+        %k+ki
         % HACEMOS LA ROTACIONES
         sc = mod(i - 1, 4) + 1;
         sum = mod(a + f + mensaje(k + ki) + t(i), m);
@@ -169,31 +152,39 @@ for k = 1:16:numel(mensaje)
         sum = circshift(sum, [0, s(sr, sc)]);
         sum = bin2dec(sum);
         % ACTUALIZAMOS  a, b, c, d.
-        aux=a;
-        a=d;
+        aux=d;
         d=c; 
         c=b;
-        b=aux;
-        
+        b=mod(b + sum, m);
+        a=aux;
     end
-    a 
-    b
-    c
-    d
     % MODIFICAMOS EL HASH.
-    fhash(1)=mod(a+fhash(1),m)
-    fhash(2)=mod(b+fhash(2),m)
-    fhash(3)=mod(c+fhash(3),m)
-    fhash(4)=mod(d+fhash(4),m)
+    fhash(1)=mod(a+fhash(1),m);
+    fhash(2)=mod(b+fhash(2),m);
+    fhash(3)=mod(c+fhash(3),m);
+    fhash(4)=mod(d+fhash(4),m);
        
 end
 
 % CONVERTIMOS HASH DE ENTEROS DE 32 BITS  , LITTLE ENDIAN, A BYTES .
-fhash=swapbytes(fhash)
 
+fhash=dec2bin(fhash,32);
+ffinal=[];
+for i=1:4
+   for j=32:-8:7
+        ffinal=[ffinal bin2dec(fhash(i,j-7:j))];
+   end
+end
+       
+               
 % CONVERTIMOS HASH A HEXADECIMAL.
-dec2hex(fhash)
-display(fhash)
+ffinal = dec2hex(ffinal);
+mensajehash='';
+for i=1:length(ffinal)
+    mensajehash=[mensajehash ffinal(i,:)];
+end
+disp('EL MENSAJE ENCRIPTADO ES:');
+display(mensajehash);
 
 
 
