@@ -1,10 +1,13 @@
 function descifro_num =descifro_elgamal_num (gk,a,q, cifrado_numero)
-%DESCIFRO_RSA
-%Funcion que descifra un texto encriptado en RSA y devuelve un bloque de numeros
+%DESCIFRO_ELGAMAL_NUM
+%Funcion que descifra un texto encriptado en ElGamal y devuelve un bloque de numeros
 %Parametros:
-%d=variable d de la clave privada del RSA
-%n=Variable n que representa el modulo
+%gk=Valor de g elevado a k en modulo q que obtuviste en el cifrado ElGamal
+%a=Clave privada del cifrado
+%q=Número primo que representa el modulo
 %cifrado_numero=Bloque de numeros a descifrar
+%Salida:
+%descifro_num=Bloque de números que representa el texto descifrado
 if(0>gk||mod(gk,1)~=0||0>a||mod(a,1)~=0||0>q||mod(q,1)~=0)
     %Si los parametros no son validos
     disp('Ni n ni d son enteros positivos');

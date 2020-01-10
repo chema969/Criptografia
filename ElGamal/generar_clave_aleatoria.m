@@ -15,7 +15,7 @@ g= randi([2,q-1]);
 while(not(genera(g,q)))
    g= randi([2,q-1]);
 end
-a= randi([0,q-1]);
+a= randi([2,q-2]);
 %Calculamos n
 n=potencia(g,a,q);
 %Creamos las claves publicas y privadas
